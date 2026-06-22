@@ -140,8 +140,9 @@ export const mergePdfs = async (
     // e.g., "1|Title|pageNumber"
     let outlineString = "";
     for (const item of outlineItems) {
-      // For lillallol/outline-pdf, page numbers are 1-indexed relative to the document
-      outlineString += `1|${item.title}|${item.pageIndex + 1}\n`;
+      // For lillallol/outline-pdf, format is: pageNumber|depthIndicator|Title
+      // We use empty string for depthIndicator since we just want a flat list.
+      outlineString += `${item.pageIndex + 1}||${item.title}\n`;
     }
     
     try {
